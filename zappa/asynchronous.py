@@ -525,6 +525,14 @@ def get_async_response(response_id, async_response_table=None):
     Get the response from the async table
     """
     async_response_table = async_response_table or ASYNC_RESPONSE_TABLE
+    if not async_response_table:
+        print(
+            "Warning! Attempted to capture a response without "
+            "async_response_table configured in settings (you won't "
+            "capture async responses)."
+        )
+        return
+
     response = DYNAMODB_CLIENT.get_item(
         TableName=async_response_table, Key={"id": {"S": str(response_id)}}
     )
