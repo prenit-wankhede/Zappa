@@ -325,7 +325,7 @@ def run_message(message):
             response = func.sync(*message["args"], **message["kwargs"])
         else:
             response = func(*message["args"], **message["kwargs"])
-    except Exception:
+    except Exception as e:
         if message.get("capture_response", False):
             DYNAMODB_CLIENT.update_item(
                 TableName=message.get("async_response_table") or ASYNC_RESPONSE_TABLE,
