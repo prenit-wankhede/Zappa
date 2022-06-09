@@ -336,6 +336,7 @@ def run_message(message):
                     ":s": {"S": "failure"},
                 },
             )
+        print(e)
         traceback.print_exc()
         return {}
     else:
